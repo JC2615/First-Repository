@@ -52,7 +52,11 @@ def onok():
 
 Button(root, text='OK', command=onok).pack(side=LEFT)
 Button(root, text='CLOSE').pack(side= RIGHT)
+confirm = Button(root, text='Confirm',command = lambda:retrieve_input()).pack()
 
+def retrieve_input(): 
+        inputValue = textBox.get("1.0","end-1c")
+        print(inputValue)
 
 
 root.mainloop()
