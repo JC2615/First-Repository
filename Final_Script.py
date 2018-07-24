@@ -26,7 +26,7 @@ elif userTranslateLanguage == "4":
 elif userTranslateLanguage == "5":
     userTranslateLanguage = "de-DE"
 elif userTranslateLanguage == "6":
-    userTranslateLanguage == "en-US"
+    userTranslateLanguage = "en-US"
 
 transLang = userTranslateLanguage[0:2]
 
