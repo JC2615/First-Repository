@@ -13,7 +13,7 @@ from google.cloud import vision
 from google.cloud.vision import types
 
 userImage = input("Enter and image url: ")
-userTranslateLanguage = input("Enter a number that corresponds to the language you'd like the output to be translated to - [1] Spanish, [2] Japanese, [3] French, [4] Italian, [5] German: ")
+userTranslateLanguage = input("Enter a number that corresponds to the language you'd like the output to be translated to - [1] Spanish, [2] Japanese, [3] French, [4] Italian, [5] German, [6] English: ")
 
 if userTranslateLanguage == "1":
     userTranslateLanguage = "es-US"
@@ -25,6 +25,8 @@ elif userTranslateLanguage == "4":
     userTranslateLanguage = "it-IT"
 elif userTranslateLanguage == "5":
     userTranslateLanguage = "de-DE"
+elif userTranslateLanguage == "6":
+    userTranslateLanguage == "en-US"
 
 transLang = userTranslateLanguage[0:2]
 
@@ -149,13 +151,9 @@ def searchLogos(uri):
     logos = response.logo_annotations
     print('Logos:')
 
-
-
     for logo in logos:
-        translation = translate_client.translate(logo.description, target_language = 'es')
-        translatedText = translation["translatedText"]
-        print("\n" + translation["input"])
-        print("Translation: " + translatedText)
+        print("\n" + logo.description)
+        translateStuff(transLang, logo.description)
 
 def searchText(uri):
 
@@ -172,12 +170,10 @@ def searchText(uri):
     response = vision_client.text_detection(image=image)
     texts = response.text_annotations
 
-    print('Labels:')
+    print('Text:')
     for text in texts:
-        translation = translate_client.translate(text.description, target_language = 'es')
-        translatedText = translation["translatedText"]
-        print("\n" + translation["input"])
-        print("Translation: " + translatedText)
+        print("\n" + text.description)
+        translateStuff(transLang, text.description)
 
 
 labelsUrl(userImage)
